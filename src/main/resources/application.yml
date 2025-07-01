@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: coletapi
+
+  datasource:
+    url: jdbc:postgresql://localhost:5434/coletasdb
+    username: admin
+    password: admin123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.format_sql: true
+
+server:
+  port: 6060
