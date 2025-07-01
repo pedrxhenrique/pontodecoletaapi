@@ -8,12 +8,15 @@ import io.github.coletapi.apicoleta.model.PontoColeta;
 import io.github.coletapi.apicoleta.service.PontoColetaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -49,4 +52,36 @@ public class PontoColetaController {
         List<PontoColetaDTO> listaDTO = pontos.stream().map(pontoColeta -> new PontoColetaDTO(pontoColeta.getId(), pontoColeta.getNome(), pontoColeta.getLatitude(), pontoColeta.getLongitude(), pontoColeta.getDescricao())).collect(Collectors.toList());
         return ResponseEntity.ok(listaDTO);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> removerPontoColeta(@PathVariable("id") String id) {
+        try{
+            var idPonto = UUID.fromString(id);
+            Optional<PontoColeta> ponto = pontoColetaService.buscarPorId(idPonto);
+            if(ponto.isEmpty()){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResposta.naoEncontrado("O id informado não foi encontrado"));
+            }
+            pontoColetaService.deletar(ponto.get().getId());
+            return ResponseEntity.noContent().build();
+        }catch(OperacaoNaoPermitida e){
+            var error = ErrorResposta.conflito(e.getMessage());
+            return ResponseEntity.status(error.status()).body(error);
+        }
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Object> atualizarPonto(@PathVariable("id") String id, @RequestBody @Valid PontoColetaDTO pontoColetaDTO) {
+        var idPonto = UUID.fromString(id);
+        Optional<PontoColeta> ponto = pontoColetaService.buscarPorId(idPonto);
+        if(ponto.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResposta.naoEncontrado("O Ponto não existe"));
+        }
+        var pontoEntity = ponto.get();
+        pontoEntity.setNome(pontoColetaDTO.nome());
+        pontoEntity.setDescricao(pontoColetaDTO.descricao());
+
+        pontoColetaService.salvar(pontoEntity);
+        return ResponseEntity.ok().body(pontoEntity);
+    }
+
 }

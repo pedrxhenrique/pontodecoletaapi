@@ -1,5 +1,6 @@
 package io.github.coletapi.apicoleta.service;
 
+import io.github.coletapi.apicoleta.Exceptions.OperacaoNaoPermitida;
 import io.github.coletapi.apicoleta.model.PontoColeta;
 import io.github.coletapi.apicoleta.repository.PontoColetaRepository;
 import io.github.coletapi.apicoleta.validator.PontoColetaValidator;
@@ -7,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +34,22 @@ public class PontoColetaService {
         return pontoColetaRepository.findAll();
     }
 
+    public void deletar(UUID id) {
+        if(!pontoColetaRepository.existsById(id)){
+            throw new OperacaoNaoPermitida("Ponto de Coleta com o ID informado não existe.");
+        }
+        pontoColetaRepository.deleteById(id);
+    }
 
+    public PontoColeta atualizar(UUID id, PontoColeta pontoColeta) {
+        PontoColeta pontoExiste = pontoColetaRepository.findById(id).orElseThrow(() -> new OperacaoNaoPermitida("Ponto não encontrado"));
+        pontoExiste.setNome(pontoColeta.getNome());
+        pontoExiste.setDescricao(pontoColeta.getDescricao());
+        return pontoColetaRepository.save(pontoExiste);
+    }
+
+    public Optional<PontoColeta> buscarPorId(UUID id) {
+        return pontoColetaRepository.findById(id);
+    }
 
 }
