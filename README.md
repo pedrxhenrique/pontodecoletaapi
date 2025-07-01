@@ -1,4 +1,4 @@
-# 💸 Projeto de Finanças Pessoais
+# 💸 Projeto de Pontos de Coleta
 
 Backend para um sistema simples de **controle de Pontos de Coleta**, com funcionalidades de cadastro e consulta de pontos de coleta, e checagem automática se a água está potável ou não.
 
