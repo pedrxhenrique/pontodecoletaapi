@@ -17,10 +17,15 @@ Backend de um sistema simples para controle de Pontos de Coleta de água, com fu
 ## ✅ Funcionalidades Atuais
 
 -✅ Cadastro e listagem de pontos de coleta
+
 -✅ Registro de leituras de sensores (ex: pH, turbidez etc.)
+
 -✅ Consulta de histórico de leituras por período
+
 -✅ Geração de alertas automáticos quando os parâmetros saem dos limites
+
 -✅ Envio de alertas por e-mail com Spring Mail
+
 -✅ Tarefas agendadas com @Scheduled
 
 ---
