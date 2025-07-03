@@ -40,8 +40,8 @@ public class AlertaService {
 
     @Scheduled(fixedRate = 3600000)
     public void verificarLeiturasRecentes(){
-        LocalDateTime umMinAtras = LocalDateTime.now().minusMinutes(60);
-        List<LeituraSensor> leiturasRecentes = leituraSensorRepository.findByDataHoraAfter(umMinAtras);
+        LocalDateTime minAtras = LocalDateTime.now().minusMinutes(60);
+        List<LeituraSensor> leiturasRecentes = leituraSensorRepository.findByDataHoraAfter(minAtras);
 
         for(LeituraSensor leituraSensor : leiturasRecentes){
             System.out.println("Processando leitura do ponto: " + leituraSensor.getIdPontoColeta().getNome());
