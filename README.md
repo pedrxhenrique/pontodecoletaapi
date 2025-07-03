@@ -1,6 +1,6 @@
 # 💧 Projeto de Pontos de Coleta
 
-Backend para um sistema simples de **controle de Pontos de Coleta**, com funcionalidades de cadastro e consulta de pontos de coleta, e checagem automática se a água está potável ou não.
+Backend de um sistema simples para controle de Pontos de Coleta de água, com funcionalidades de cadastro e consulta de pontos, além de verificação automática da potabilidade da água com base nas leituras de sensores.
 
 ---
 
@@ -16,12 +16,17 @@ Backend para um sistema simples de **controle de Pontos de Coleta**, com funcion
 
 ## ✅ Funcionalidades Atuais
 
-- ✅ Cadastro de pontos de coleta 
-- ✅ Consulta de pontos de coleta por nome  
-- ✅ Remoção de pontos de coleta  
-- ✅ Validação de campos obrigatórios (`@Valid`)  
-- ✅ Prevenção de duplicidade de pontos de coleta (erro ao cadastrar com nome já existente)  
+-✅ Cadastro e listagem de pontos de coleta
 
+-✅ Registro de leituras de sensores (ex: pH, turbidez etc.)
+
+-✅ Consulta de histórico de leituras por período
+
+-✅ Geração de alertas automáticos quando os parâmetros saem dos limites
+
+-✅ Envio de alertas por e-mail com Spring Mail
+
+-✅ Tarefas agendadas com @Scheduled
 
 ---
 
