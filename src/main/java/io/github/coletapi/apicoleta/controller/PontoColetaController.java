@@ -20,7 +20,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/pontocoleta")
+@RequestMapping("/pontoscoleta")
 @RequiredArgsConstructor
 public class PontoColetaController {
 

@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Data
-@Table(name = "PontoColeta")
+@Table(name = "ponto_coleta")
 public class PontoColeta {
 
     @Id

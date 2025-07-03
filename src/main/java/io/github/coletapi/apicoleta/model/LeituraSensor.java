@@ -1,15 +1,20 @@
 package io.github.coletapi.apicoleta.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Data
-@Table(name = "LeituraSensor")
+@Table(name = "leitura_sensor")
+@EntityListeners(AuditingEntityListener.class)
 public class LeituraSensor {
 
     @Id
@@ -17,13 +22,15 @@ public class LeituraSensor {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "ponto_coleta_id")
-    private PontoColeta pontoColeta;
+    private PontoColeta idPontoColeta;
 
     @CreatedDate
     @Column(name = "data_hora")
-    private LocalDateTime data_hora;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime dataHora;
 
     @Column(name = "pH")
     private Double pH;

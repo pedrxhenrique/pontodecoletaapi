@@ -15,5 +15,23 @@ spring:
     properties:
       hibernate.format_sql: true
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_USER}
+    password: ${EMAIL_PASS}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+monitoramento:
+  qualidadeAgua:
+    phMin: 6.0
+    phMax: 8.5
+    tempMax: 30.0
+    turbidezMax: 5.0
+  email:
+    destinatario: ${EMAIL_DEST}
+
 server:
   port: 6060
