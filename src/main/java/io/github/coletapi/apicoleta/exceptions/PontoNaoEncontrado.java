@@ -1,4 +1,4 @@
-package io.github.coletapi.apicoleta.Exceptions;
+package io.github.coletapi.apicoleta.exceptions;
 
 public class PontoNaoEncontrado extends RuntimeException{
     public PontoNaoEncontrado(String msg){

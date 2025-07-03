@@ -1,8 +1,7 @@
 package io.github.coletapi.apicoleta.controller;
 
-import io.github.coletapi.apicoleta.Exceptions.OperacaoNaoPermitida;
+import io.github.coletapi.apicoleta.exceptions.OperacaoNaoPermitida;
 import io.github.coletapi.apicoleta.dto.PontoColetaDTO;
-import io.github.coletapi.apicoleta.dto.errors.ErrorCampo;
 import io.github.coletapi.apicoleta.dto.errors.ErrorResposta;
 import io.github.coletapi.apicoleta.model.PontoColeta;
 import io.github.coletapi.apicoleta.service.PontoColetaService;

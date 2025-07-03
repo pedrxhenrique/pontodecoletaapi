@@ -1,6 +1,6 @@
 package io.github.coletapi.apicoleta.service;
 
-import io.github.coletapi.apicoleta.Exceptions.OperacaoNaoPermitida;
+import io.github.coletapi.apicoleta.exceptions.OperacaoNaoPermitida;
 import io.github.coletapi.apicoleta.model.PontoColeta;
 import io.github.coletapi.apicoleta.repository.PontoColetaRepository;
 import io.github.coletapi.apicoleta.validator.PontoColetaValidator;

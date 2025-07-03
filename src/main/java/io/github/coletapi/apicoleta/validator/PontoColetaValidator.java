@@ -1,12 +1,11 @@
 package io.github.coletapi.apicoleta.validator;
 
-import io.github.coletapi.apicoleta.Exceptions.OperacaoNaoPermitida;
+import io.github.coletapi.apicoleta.exceptions.OperacaoNaoPermitida;
 import io.github.coletapi.apicoleta.model.PontoColeta;
 import io.github.coletapi.apicoleta.repository.PontoColetaRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class PontoColetaValidator {
